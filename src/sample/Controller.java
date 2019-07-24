@@ -1,4 +1,4 @@
-package me.skwead;
+package sample;
 
 public class Controller {
 }
