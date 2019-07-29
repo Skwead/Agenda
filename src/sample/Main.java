@@ -5,8 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.calendar.CalendarHandler;
+
+//TODO: Validação dos dados de entrada (CalendarHandler)
+//TODO: Comunicação dos dados ao Controller
+//TODO: Calendário semanal/horário
 
 public class Main extends Application {
+
+    private CalendarHandler calendarHandler = new CalendarHandler();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -20,5 +27,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public CalendarHandler getCalendarHandler() {
+        return calendarHandler;
     }
 }

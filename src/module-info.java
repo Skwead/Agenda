@@ -5,4 +5,5 @@ module Agenda {
     requires kotlin.stdlib;
 
     opens sample to javafx.graphics, javafx.fxml;
+    opens sample.calendar to javafx.graphics, javafx.fxml;
 }

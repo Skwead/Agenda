@@ -1,30 +1,35 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import sample.utils.ControllerUtils;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    @FXML
-    private AnchorPane mainPane;
 
     @FXML
-    private TabPane calendars;
+    private BorderPane mainPane;
 
     @FXML
-    private MenuBar menuBar;
+    private Button btnNewEvt;
 
     @FXML
-    private TableView<?> todo;
+    void click(ActionEvent event) {
+        try {
+            new ControllerUtils().openWindow(new Stage(), "addEvtDialog.fxml", "Novo evento", false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,17 +54,4 @@ public class Controller implements Initializable {
 
         }
     }
-
-    public TabPane getCalendars() {
-        return calendars;
-    }
-
-    public MenuBar getMenuBar() {
-        return menuBar;
-    }
-
-    public TableView<?> getTodo() {
-        return todo;
-    }
-
 }
