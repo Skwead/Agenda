@@ -1,30 +1,32 @@
 package sample.calendar;
 
+import java.util.Date;
+
 public class SkEvent {
-    private Time time;
+    private Date date;
     private String name;
     private String description;
     private String todo;
 
-    public SkEvent(Time time, String name, String description, String todo) {
-        this.time = time;
+    public SkEvent(Date date, String name, String description, String todo) {
+        this.date = date;
         this.name = name;
         this.description = description;
         this.todo = todo;
     }
 
-    public SkEvent(Time time, String name, String todo) {
-        this.time = time;
+    public SkEvent(Date date, String name, String todo) {
+        this.date = date;
         this.name = name;
         this.todo = todo;
     }
 
-    public Time getTime() {
-        return time;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTime(Time time) {
-        this.time = time;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getName() {

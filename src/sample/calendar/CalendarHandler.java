@@ -1,21 +1,24 @@
 package sample.calendar;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CalendarHandler {
 
-    private Map<Time, SkEvent> sortedEvts = new HashMap<>();
+    private List<SkEvent> sortedEvts = new ArrayList<>();
 
-    public Map<Time, SkEvent> getToday(){
-        Map<Time, SkEvent> todaySchedule = new HashMap<>();
-        for(Time eventTime: sortedEvts.keySet()){
-            if(eventTime.equals(new Time(new Date(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth()), LocalDateTime.now().getHour(), LocalDateTime.now().getMinute()))){
-                todaySchedule.put(eventTime, sortedEvts.get(eventTime));
+    public ArrayList<SkEvent> getToday(){
+        ArrayList<SkEvent> todaySchedule = new ArrayList<>();
+
+        sortedEvts.forEach(event -> {
+            if(event.getDate().getDay() == (new Date(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth()).getDay())){
+                todaySchedule.add(event);
             }
-        }
+        });
         return todaySchedule;
+    }
+
+    public List<SkEvent> getSortedEvts() {
+        return sortedEvts;
     }
 }
