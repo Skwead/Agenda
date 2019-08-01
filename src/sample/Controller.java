@@ -8,6 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import sample.calendar.CalendarHandler;
+import sample.calendar.CallendarController;
 import sample.utils.ControllerUtils;
 
 import java.io.IOException;
@@ -16,16 +18,15 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    @FXML
-    private BorderPane mainPane;
-
-    @FXML
-    private Button btnNewEvt;
+    @FXML private BorderPane mainPane;
+    @FXML private Button btnNewEvt;
+    private static CalendarHandler calendarHandler = new CalendarHandler();
+    private static ControllerUtils controllerUtils = new ControllerUtils();
 
     @FXML
     void click(ActionEvent event) {
         try {
-            new ControllerUtils().openWindow(new Stage(), "addEvtDialog.fxml", "Novo evento", false);
+            FXMLLoader loader = controllerUtils.openWindowGetLoader(new Stage(), "addEvtDialog.fxml", "Novo evento", false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,22 +37,30 @@ public class Controller implements Initializable {
 //        refreshNodes();
     }
 
-    private void refreshNodes()
-    {
-        mainPane.getChildren().clear();
-
-        Node [] nodes = new  Node[15];
-
-        for(int i = 0; i<10; i++)
-        {
-            try {
-                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("Item.fxml"));
-                mainPane.getChildren().add(nodes[i]);
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-
-        }
+    public static CalendarHandler getCalendarHandler() {
+        return calendarHandler;
     }
+
+    public static ControllerUtils getControllerUtils() {
+        return controllerUtils;
+    }
+
+    //    private void refreshNodes()
+//    {
+//        mainPane.getChildren().clear();
+//
+//        Node [] nodes = new  Node[15];
+//
+//        for(int i = 0; i<10; i++)
+//        {
+//            try {
+//                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("Item.fxml"));
+//                mainPane.getChildren().add(nodes[i]);
+//
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//
+//        }
+//    }
 }
