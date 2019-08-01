@@ -20,12 +20,14 @@ public class Controller implements Initializable {
 
     @FXML private BorderPane mainPane;
     @FXML private Button btnNewEvt;
-    private static CalendarHandler calendarHandler;
+    private CalendarHandler calendarHandler = new CalendarHandler();
+    private ControllerUtils controllerUtils = new ControllerUtils();
 
     @FXML
     void click(ActionEvent event) {
         try {
-            new ControllerUtils().openWindow(new Stage(), "addEvtDialog.fxml", "Novo evento", false);
+            FXMLLoader loader = controllerUtils.openWindowGetLoader(new Stage(), "addEvtDialog.fxml", "Novo evento", false);
+//            loader.<CallendarController>getController(). Quero daqui adicionar um event handler para o fecho da janela para assim tirar os dados do CallendarController
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,11 +36,14 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        refreshNodes();
-        calendarHandler = new CalendarHandler();
     }
 
     public CalendarHandler getCalendarHandler() {
         return calendarHandler;
+    }
+
+    public ControllerUtils getControllerUtils() {
+        return controllerUtils;
     }
 
     //    private void refreshNodes()

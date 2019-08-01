@@ -44,7 +44,7 @@ public class CallendarController implements Initializable {
 //            at Agenda/sample.calendar.CallendarController.validateInput(CallendarController.java:64)
 //            at Agenda/sample.calendar.CallendarController.click(CallendarController.java:49)
 
-            new CallendarController().getSortedEvts().add(new SkEvent(DateUtils.localDateToDate(date, hour, minute), name, description));
+//            new CallendarController().getSortedEvts().add(new SkEvent(DateUtils.localDateToDate(date, hour, minute), name, description));
 
             new ControllerUtils().closeStage((Stage) evtHour.getScene().getWindow());
         } catch (NumberFormatException e){
