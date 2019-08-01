@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="449.0" prefWidth="326.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.calendar.CallendarController">
+<AnchorPane fx:id="mainPane" prefHeight="449.0" prefWidth="326.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.calendar.CallendarController">
    <children>
       <TextArea fx:id="evtDescription" layoutX="33.0" layoutY="184.0" prefHeight="234.0" prefWidth="200.0" />
       <Text layoutX="33.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" wrappingWidth="57.48199462890625" />

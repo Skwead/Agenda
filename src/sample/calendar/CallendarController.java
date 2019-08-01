@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sample.Controller;
 import sample.Main;
 import sample.utils.ControllerUtils;
 import sample.utils.DateUtils;
@@ -16,33 +17,13 @@ import java.util.ResourceBundle;
 public class CallendarController implements Initializable {
 
     private Main instance;
-
-    @FXML
-    private TextArea evtDescription;
-
-    @FXML
-    private TextField evtHour;
-
-    @FXML
-    private TextField evtMinute;
-
-    @FXML
-    private TextField evtName;
-
-    @FXML
-    private DatePicker evtDateTimePicker;
-
-    @FXML
-    private Button btnCreateEvt;
-
-    public CallendarController() {
-
-    }
-
-    public CallendarController(Main main) {
-        instance = main;
-    }
-
+    @FXML private TextArea evtDescription;
+    @FXML private TextField evtHour;
+    @FXML private TextField evtMinute;
+    @FXML private TextField evtName;
+    @FXML private DatePicker evtDateTimePicker;
+    @FXML private Button btnCreateEvt;
+    
     @FXML
     void click(ActionEvent event) { //Pode ser q este evt dispare por td e por nd, verificar c sout no caso d dar asneira
         if(event.getSource().equals(btnCreateEvt)){
@@ -58,11 +39,13 @@ public class CallendarController implements Initializable {
             String name = evtName.getText();
             String description = evtDescription.getText();
 
-//TODO: ver frameworks de DI para JavaFx.
+//TODO: https://stackoverflow.com/questions/14187963/passing-parameters-javafx-fxml resolve o problema
 //            Caused by: java.lang.NullPointerException
 //            at Agenda/sample.calendar.CallendarController.validateInput(CallendarController.java:64)
 //            at Agenda/sample.calendar.CallendarController.click(CallendarController.java:49)
-            instance.getCalendarHandler().getSortedEvts().add(new SkEvent(DateUtils.localDateToDate(date, hour, minute), name, description));
+
+            new CallendarController().getSortedEvts().add(new SkEvent(DateUtils.localDateToDate(date, hour, minute), name, description));
+
             new ControllerUtils().closeStage((Stage) evtHour.getScene().getWindow());
         } catch (NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
