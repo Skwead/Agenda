@@ -25,32 +25,36 @@ public class CallendarController implements Initializable {
     @FXML private Button btnCreateEvt;
     
     @FXML
-    void click(ActionEvent event) { //Pode ser q este evt dispare por td e por nd, verificar c sout no caso d dar asneira
+    void click(ActionEvent event) {
         if(event.getSource().equals(btnCreateEvt)){
             validateInput();
         }
     }
 
     public void validateInput(){ //TODO: Devolver informação específica de cada erro
+        String alertTxt = "Um dos campos numéricos não tem um valor numérico";
         try{
             LocalDate date = evtDateTimePicker.getValue();
             int hour = Integer.valueOf(evtHour.getText());
             int minute = Integer.valueOf(evtMinute.getText());
-            String name = evtName.getText();
+            String name = evtName.getText().trim();
             String description = evtDescription.getText();
 
-//TODO: https://stackoverflow.com/questions/14187963/passing-parameters-javafx-fxml resolve o problema
-//            Caused by: java.lang.NullPointerException
-//            at Agenda/sample.calendar.CallendarController.validateInput(CallendarController.java:64)
-//            at Agenda/sample.calendar.CallendarController.click(CallendarController.java:49)
+            if((hour>24) || (minute>60) || (name.toCharArray().length<1)){
+                alertTxt = "Um dos campos não tem um valor válido";
+                throw new NumberFormatException();
+            }
 
+            //https://stackoverflow.com/questions/14187963/passing-parameters-javafx-fxml resolveu o problema
             Controller.getCalendarHandler().getSortedEvts().add(new SkEvent(DateUtils.localDateToDate(date, hour, minute), name, description));
+            Controller.getC().setupEvts();
+            //TODO: Criar um método no Controller q atualize o calendário e chamá-lo aqui.
 
             new ControllerUtils().closeStage((Stage) evtHour.getScene().getWindow());
         } catch (NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro de input");
-            alert.setHeaderText("Um dos campos numéricos não tem um valor numérico");
+            alert.setHeaderText(alertTxt);
             alert.setContentText(e.getMessage());
             alert.setResizable(false);
             alert.show();

@@ -1,40 +1,70 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import sample.calendar.CalendarHandler;
 import sample.calendar.CallendarController;
+import sample.calendar.SkEvent;
 import sample.utils.ControllerUtils;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
-public class Controller implements Initializable {
+public class Controller implements Initializable{
 
-    @FXML private BorderPane mainPane;
+    private static Controller c = new Controller();
+    @FXML private BorderPane mainBorderPane;
+    @FXML private TableView<SkEvent> todayTable;
+    @FXML private TableColumn<SkEvent, Date> horaTodoCol;
+    @FXML private TableColumn<SkEvent, String> estadoTodoCol;
+    @FXML private TableColumn<SkEvent, String> tarefaTodoCol;
+    @FXML private TableView<SkEvent> calendarTable;
+    @FXML private TableColumn<SkEvent, Date> horaCol;
+    @FXML private TableColumn<SkEvent, String> segCol;
+    @FXML private TableColumn<SkEvent, String> terCol;
+    @FXML private TableColumn<SkEvent, String> quaCol;
+    @FXML private TableColumn<SkEvent, String> quiCol;
+    @FXML private TableColumn<SkEvent, String> sexCol;
+    @FXML private TableColumn<SkEvent, String> sabCol;
+    @FXML private TableColumn<SkEvent, String> domCol;
     @FXML private Button btnNewEvt;
     private static CalendarHandler calendarHandler = new CalendarHandler();
     private static ControllerUtils controllerUtils = new ControllerUtils();
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
     @FXML
     void click(ActionEvent event) {
         try {
-            FXMLLoader loader = controllerUtils.openWindowGetLoader(new Stage(), "addEvtDialog.fxml", "Novo evento", false);
+            controllerUtils.openWindow(new Stage(), "addEvtDialog.fxml", "Novo evento", false);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        refreshNodes();
+    public void setupEvts(){ //TODO: Para resolver o problema tenho de criar as tabelas no init() e colocar atributos não @FXML nesta classe.
+        ObservableList<SkEvent> obsEvts = FXCollections.observableArrayList(calendarHandler.getToday());
+
+        horaTodoCol.setCellValueFactory(new PropertyValueFactory<SkEvent, Date>("date"));
+        tarefaTodoCol.setCellValueFactory(new PropertyValueFactory<SkEvent, String>("name"));
+
+        todayTable.setItems(obsEvts);
     }
 
     public static CalendarHandler getCalendarHandler() {
@@ -45,22 +75,8 @@ public class Controller implements Initializable {
         return controllerUtils;
     }
 
-    //    private void refreshNodes()
-//    {
-//        mainPane.getChildren().clear();
-//
-//        Node [] nodes = new  Node[15];
-//
-//        for(int i = 0; i<10; i++)
-//        {
-//            try {
-//                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("Item.fxml"));
-//                mainPane.getChildren().add(nodes[i]);
-//
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//
-//        }
-//    }
+    public static Controller getC() {
+        return c;
+    }
+
 }
