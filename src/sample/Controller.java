@@ -27,19 +27,19 @@ public class Controller implements Initializable{
 
     private static Controller c = new Controller();
     @FXML private BorderPane mainBorderPane;
-    @FXML private TableView<SkEvent> todayTable;
-    @FXML private TableColumn<SkEvent, Date> horaTodoCol;
-    @FXML private TableColumn<SkEvent, String> estadoTodoCol;
-    @FXML private TableColumn<SkEvent, String> tarefaTodoCol;
-    @FXML private TableView<SkEvent> calendarTable;
-    @FXML private TableColumn<SkEvent, Date> horaCol;
-    @FXML private TableColumn<SkEvent, String> segCol;
-    @FXML private TableColumn<SkEvent, String> terCol;
-    @FXML private TableColumn<SkEvent, String> quaCol;
-    @FXML private TableColumn<SkEvent, String> quiCol;
-    @FXML private TableColumn<SkEvent, String> sexCol;
-    @FXML private TableColumn<SkEvent, String> sabCol;
-    @FXML private TableColumn<SkEvent, String> domCol;
+    @FXML private TableView<SkEvent> todayTable = new TableView<>();
+    @FXML private TableColumn<SkEvent, Date> horaTodoCol = new TableColumn<>();
+    @FXML private TableColumn<SkEvent, String> estadoTodoCol = new TableColumn<>();
+    @FXML private TableColumn<SkEvent, String> tarefaTodoCol = new TableColumn<>();
+    @FXML private TableView<SkEvent> calendarTable = new TableView<>();
+    @FXML private TableColumn<SkEvent, Date> horaCol = new TableColumn<>();
+    @FXML private TableColumn<SkEvent, String> segCol = new TableColumn<>();
+    @FXML private TableColumn<SkEvent, String> terCol = new TableColumn<>();
+    @FXML private TableColumn<SkEvent, String> quaCol = new TableColumn<>();
+    @FXML private TableColumn<SkEvent, String> quiCol = new TableColumn<>();
+    @FXML private TableColumn<SkEvent, String> sexCol = new TableColumn<>();
+    @FXML private TableColumn<SkEvent, String> sabCol = new TableColumn<>();
+    @FXML private TableColumn<SkEvent, String> domCol = new TableColumn<>();
     @FXML private Button btnNewEvt;
     private static CalendarHandler calendarHandler = new CalendarHandler();
     private static ControllerUtils controllerUtils = new ControllerUtils();
@@ -59,20 +59,21 @@ public class Controller implements Initializable{
     }
 
     public void setupEvts(){ //TODO: Para resolver o problema tenho de criar as tabelas no init() e colocar atributos não @FXML nesta classe.
+
         ObservableList<SkEvent> obsEvts = FXCollections.observableArrayList(calendarHandler.getToday());
 
         horaTodoCol.setCellValueFactory(new PropertyValueFactory<SkEvent, Date>("date"));
         tarefaTodoCol.setCellValueFactory(new PropertyValueFactory<SkEvent, String>("name"));
 
         todayTable.setItems(obsEvts);
+
+        todayTable.getColumns().addAll(horaTodoCol, estadoTodoCol ,tarefaTodoCol);
+        todayTable.getColumns().set(0, horaTodoCol);
+        todayTable.getColumns().set(2, tarefaTodoCol);
     }
 
     public static CalendarHandler getCalendarHandler() {
         return calendarHandler;
-    }
-
-    public static ControllerUtils getControllerUtils() {
-        return controllerUtils;
     }
 
     public static Controller getC() {

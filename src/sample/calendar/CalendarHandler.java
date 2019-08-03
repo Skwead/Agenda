@@ -12,11 +12,12 @@ public class CalendarHandler {
     public ArrayList<SkEvent> getToday(){
         ArrayList<SkEvent> todaySchedule = new ArrayList<>();
 
-        sortedEvts.forEach(event -> {
-            if(event.getDate().getDay() == (new Date(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth()).getDay())){
+        for (SkEvent event : sortedEvts) {
+            if (event.getDate().getDay() == (new Date(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(),
+                    LocalDateTime.now().getDayOfMonth()).getDay())) {
                 todaySchedule.add(event);
             }
-        });
+        }
 
         Collections.sort(todaySchedule, Comparator.comparing(SkEvent::getDate)); //ver comentário ao fundo
         return todaySchedule;

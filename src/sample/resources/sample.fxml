@@ -14,27 +14,27 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="todayTable" layoutY="25.0" prefHeight="398.4" prefWidth="206.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="todayTable" editable="true" layoutY="25.0" prefHeight="398.4" prefWidth="206.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="horaTodoCol" editable="false" prefWidth="75.0" sortable="false" text="hora" />
-                      <TableColumn fx:id="estadoTodoCol" editable="false" prefWidth="56.800018310546875" sortable="false" text="estado" />
-                        <TableColumn fx:id="tarefaTodoCol" editable="false" prefWidth="180.79995727539062" sortable="false" text="tarefa" />
+                      <TableColumn fx:id="horaTodoCol" prefWidth="75.0" sortable="false" text="hora" />
+                      <TableColumn fx:id="estadoTodoCol" prefWidth="56.800018310546875" sortable="false" text="estado" />
+                      <TableColumn fx:id="tarefaTodoCol" prefWidth="180.79995727539062" sortable="false" text="tarefa" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="calendarTable" layoutX="93.0" layoutY="99.0" prefHeight="398.4" prefWidth="386.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="calendarTable" editable="true" layoutX="93.0" layoutY="99.0" prefHeight="398.4" prefWidth="386.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="horaCol" editable="false" prefWidth="75.0" sortable="false" text="hora" />
-                      <TableColumn fx:id="segCol" editable="false" prefWidth="74.0" sortable="false" text="seg" />
-                        <TableColumn fx:id="terCol" editable="false" prefWidth="74.0" sortable="false" text="ter" />
-                        <TableColumn fx:id="quaCol" editable="false" prefWidth="74.0" sortable="false" text="qua" />
-                        <TableColumn fx:id="quiCol" editable="false" prefWidth="74.0" sortable="false" text="qui" />
-                        <TableColumn fx:id="sexCol" editable="false" prefWidth="74.0" sortable="false" text="sex" />
-                        <TableColumn fx:id="sabCol" editable="false" prefWidth="74.0" sortable="false" text="sab" />
-                        <TableColumn fx:id="domCol" editable="false" prefWidth="74.0" sortable="false" text="dom" />
+                      <TableColumn fx:id="horaCol" prefWidth="75.0" sortable="false" text="hora" />
+                      <TableColumn fx:id="segCol" prefWidth="74.0" sortable="false" text="seg" />
+                        <TableColumn fx:id="terCol" prefWidth="74.0" sortable="false" text="ter" />
+                        <TableColumn fx:id="quaCol" prefWidth="74.0" sortable="false" text="qua" />
+                        <TableColumn fx:id="quiCol" prefWidth="74.0" sortable="false" text="qui" />
+                        <TableColumn fx:id="sexCol" prefWidth="74.0" sortable="false" text="sex" />
+                        <TableColumn fx:id="sabCol" prefWidth="74.0" sortable="false" text="sab" />
+                        <TableColumn fx:id="domCol" prefWidth="74.0" sortable="false" text="dom" />
                     </columns>
                   </TableView>
                </children>
