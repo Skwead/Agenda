@@ -1,7 +1,5 @@
 package sample.calendar;
 
-import javafx.fxml.FXMLLoader;
-
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -13,8 +11,7 @@ public class CalendarHandler {
         ArrayList<SkEvent> todaySchedule = new ArrayList<>();
 
         for (SkEvent event : sortedEvts) {
-            if (event.getDate().getDay() == (new Date(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(),
-                    LocalDateTime.now().getDayOfMonth()).getDay())) {
+            if (event.getDate().getDayOfYear() == LocalDateTime.now().getDayOfYear()) {
                 todaySchedule.add(event);
             }
         }

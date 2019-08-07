@@ -12,6 +12,8 @@ import sample.utils.DateUtils;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class CallendarController implements Initializable {
@@ -46,9 +48,9 @@ public class CallendarController implements Initializable {
             }
 
             //https://stackoverflow.com/questions/14187963/passing-parameters-javafx-fxml resolveu o problema
-            Controller.getCalendarHandler().getSortedEvts().add(new SkEvent(DateUtils.localDateToDate(date, hour, minute), name, description));
+            Controller.getCalendarHandler().getSortedEvts().add(new SkEvent(LocalDateTime.of(evtDateTimePicker.getValue(), LocalTime.of(hour, minute))
+                    , name, description));
             Controller.getC().setupEvts();
-            //TODO: Criar um método no Controller q atualize o calendário e chamá-lo aqui.
 
             new ControllerUtils().closeStage((Stage) evtHour.getScene().getWindow());
         } catch (NumberFormatException e){

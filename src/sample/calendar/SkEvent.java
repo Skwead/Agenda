@@ -1,31 +1,32 @@
 package sample.calendar;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class SkEvent {
-    private Date date;
+    private LocalDateTime date;
     private String name;
     private String description;
     private String todo;
 
-    public SkEvent(Date date, String name, String description, String todo) {
+    public SkEvent(LocalDateTime date, String name, String description, String todo) {
         this.date = date;
         this.name = name;
         this.description = description;
         this.todo = todo;
     }
 
-    public SkEvent(Date date, String name, String todo) {
+    public SkEvent(LocalDateTime date, String name, String todo) {
         this.date = date;
         this.name = name;
         this.todo = todo;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
