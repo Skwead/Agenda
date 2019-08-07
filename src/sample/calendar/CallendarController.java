@@ -1,5 +1,6 @@
 package sample.calendar;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,7 +9,6 @@ import javafx.stage.Stage;
 import sample.Controller;
 import sample.Main;
 import sample.utils.ControllerUtils;
-import sample.utils.DateUtils;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -26,8 +26,7 @@ public class CallendarController implements Initializable {
     @FXML private DatePicker evtDateTimePicker;
     @FXML private Button btnCreateEvt;
     
-    @FXML
-    void click(ActionEvent event) {
+    @FXML void click(ActionEvent event) {
         if(event.getSource().equals(btnCreateEvt)){
             validateInput();
         }
@@ -50,7 +49,7 @@ public class CallendarController implements Initializable {
             //https://stackoverflow.com/questions/14187963/passing-parameters-javafx-fxml resolveu o problema
             Controller.getCalendarHandler().getSortedEvts().add(new SkEvent(LocalDateTime.of(evtDateTimePicker.getValue(), LocalTime.of(hour, minute))
                     , name, description));
-            Controller.getC().setupEvts();
+            Controller.getC().updateTables(Controller.getCalendarHandler().getToday());
 
             new ControllerUtils().closeStage((Stage) evtHour.getScene().getWindow());
         } catch (NumberFormatException e){

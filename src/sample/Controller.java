@@ -26,25 +26,13 @@ public class Controller implements Initializable{
     @FXML private TableView<SkEvent> todayTable;
 //    @FXML private TableView<SkEvent> calendarTable;
     @FXML private Button btnNewEvt;
+    private ObservableList<SkEvent> obsEvts;
     private static CalendarHandler calendarHandler = new CalendarHandler();
     private static ControllerUtils controllerUtils = new ControllerUtils();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
-    @FXML
-    void click(ActionEvent event) {
-        try {
-            controllerUtils.openWindow(new Stage(), "addEvtDialog.fxml", "Novo evento", false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setupEvts(){
-        ObservableList<SkEvent> obsEvts = FXCollections.observableArrayList(calendarHandler.getToday());
+        obsEvts = FXCollections.observableArrayList(calendarHandler.getToday());
 
         TableColumn<SkEvent, LocalDateTime> horaTodoCol = new TableColumn<>("Data e hora");
         horaTodoCol.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -56,6 +44,36 @@ public class Controller implements Initializable{
 
         todayTable.setItems(obsEvts);
     }
+
+    public void updateTables(ArrayList<SkEvent> items){
+        obsEvts.addAll(items);
+        todayTable.setItems(obsEvts);
+    }
+
+    @FXML
+    void click(ActionEvent event) {
+        try {
+            controllerUtils.openWindow(new Stage(), "addEvtDialog.fxml", "Novo evento", false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public ObservableList<SkEvent> setupEvts(){
+//
+//        ObservableList<SkEvent> obsEvts = FXCollections.observableArrayList(calendarHandler.getToday());
+//
+//        TableColumn<SkEvent, LocalDateTime> horaTodoCol = new TableColumn<>("Data e hora");
+//        horaTodoCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+//
+//        TableColumn<SkEvent, String> tarefaTodoCol = new TableColumn<>("Evento");
+//        tarefaTodoCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+//
+//        todayTable.getColumns().setAll(horaTodoCol, tarefaTodoCol);
+//
+//        todayTable.setItems(obsEvts);
+
+//    }
 
     public static CalendarHandler getCalendarHandler() {
         return calendarHandler;
